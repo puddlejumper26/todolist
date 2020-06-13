@@ -1,4 +1,4 @@
-<!-- <nz-card nzHoverable
+<nz-card nzHoverable
   style="width: 400px; display: inline-block;"
   [nzActions]="[actionDone, actionEdit, actionDelete]"
 >
@@ -11,9 +11,9 @@
 </ng-template>
 
 <ng-template #actionEdit>
-    <button (click)="deleteItem()" nz-button nzType="primary">Edit</button>
+    <button (click)="editItem()" nz-button nzType="primary">Edit</button>
 </ng-template>
 
 <ng-template #actionDelete>
     <button (click)="deleteItem()" nz-button nzType="danger">Delete</button>
-</ng-template> -->
+</ng-template>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,23 +7,26 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  // add Todo title
+  // add todo Title
   todoTitle = '';
-  // data array
+
   dataArray: Array<Object> = [];
-  // waiting list array
   doingArray: Array<Object> = [];
-  // finished array
   doneArray: Array<Object> = [];
+
+  modalIsVisible: boolean = false;
+  editTitle: string = '';
+  editDate: string = '';
+  editDone: boolean = false;
+  editIndex: number = 0;
 
   constructor(private message: NzMessageService) {}
 
   ngOnInit() {
-    this.getToDoList();
+    this.getTodoList();
   }
 
-  // obtain list data
-  private getToDoList(): void {
+  getTodoList(): void {
     const dataString: string = localStorage.getItem('todo-list');
     if (dataString != null) {
       this.dataArray = JSON.parse(dataString);
@@ -38,29 +41,41 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  // add Todo
   addTodo(): void {
-    if (this.todoTitle === '') {
-      this.message.info('Please input title');
+    this.editTitle = '';
+    this.editDate = '';
+    this.editDone = false;
+    this.editIndex = 0;
+    this.modalIsVisible = true;
+  }
+
+  addTodoEvent(data: Object) {
+    const item = {
+      title: data['title'],
+      date: data['date'],
+      done: data['done'],
+    };
+
+    if (data['done'] == true) {
+      this.doneArray[data['index']] = item;
     } else {
-      const item = {
-        done: false,
-        title: this.todoTitle,
-      };
-      this.doingArray.push(item);
-      this.dataArray.push(item);
-      this.todoTitle = '';
-      localStorage.setItem('todo-list', JSON.stringify(this.dataArray));
+      if (data['isEdit'] == true) {
+        this.doingArray[data['index']] = item;
+      } else {
+        this.doingArray.push(item);
+      }
     }
+    this.dataArray = this.doingArray.concat(this.doneArray);
+    localStorage.setItem('todo-list', JSON.stringify(this.dataArray));
   }
 
   checkItem(data: Object) {
     const index: number = data['index'];
-    const title: boolean = data['title'];
     const done: boolean = data['done'];
     const newItem = {
+      title: data['title'],
+      date: data['date'],
       done: done,
-      title: title,
     };
     if (done) {
       this.doingArray.splice(index, 1);
@@ -73,15 +88,21 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('todo-list', JSON.stringify(this.dataArray));
   }
 
-  editItem(data: Object) {}
+  editItem(data: Object) {
+    this.editTitle = data['title'];
+    this.editDate = data['date'];
+    this.editDone = data['done'];
+    this.editIndex = data['index'];
+    this.modalIsVisible = true;
+  }
 
   deleteItem(data: Object) {
     const index: number = data['index'];
     const done: boolean = data['done'];
-    if(done){
-      this.doneArray.splice(index,1);
-    }else{
-      this.doingArray.splice(index,1);
+    if (done) {
+      this.doneArray.splice(index, 1);
+    } else {
+      this.doingArray.splice(index, 1);
     }
     this.dataArray = this.doingArray.concat(this.doneArray);
     localStorage.setItem('todo-list', JSON.stringify(this.dataArray));

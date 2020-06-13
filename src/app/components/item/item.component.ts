@@ -14,7 +14,7 @@ export class ItemComponent implements OnInit {
   @Input()
   done: boolean;
   @Input()
-  date: number;
+  date: boolean;
   @Output()
   checkItemEvent = new EventEmitter<Object>();
   @Output()
@@ -33,6 +33,7 @@ export class ItemComponent implements OnInit {
   checkItem(): void {
     const data: Object = {
       index: this.index,
+      date: this.date,
       title: this.title,
       done: this.done,
     };
@@ -42,6 +43,7 @@ export class ItemComponent implements OnInit {
   editItem(){
     const data: Object = {
       index: this.index,
+      date: this.date,
       title: this.title,
       done: this.done
     };

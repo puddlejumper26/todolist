@@ -1,1 +1,29 @@
-<p>edit-modal works!</p>
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Add todo" nzOkText="confirm" nzCancelText="cancel" (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="title" nzRequired>
+        <span>
+          Title
+        </span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input id="title" formControlName="title" nz-tooltip nzTitle="not longer than 15 digits" type="question-circle" theme="outline">
+        <span *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">Please input Title!
+        </span>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>
+        <span>
+          Date
+        </span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-date-picker formControlName="date" nz-tooltip nzTitle="can not choose passed date" type="question-circle" theme="outline"></nz-date-picker>
+        <span *ngIf="validateForm.get('date').dirty && validateForm.get('date').errors">Please choose a date！
+        </span>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
