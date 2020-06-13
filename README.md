@@ -7,7 +7,7 @@
 
 # Concept
 
-- **`MVP (Minimum Viable Product`**
+- **`MVP (Minimum Viable Product)`**
 ![image](https://user-images.githubusercontent.com/40550117/84043590-10054680-a9d9-11ea-85de-d563651b96e2.png)
 - CRUD(Create, Read, Update and Delete)
 

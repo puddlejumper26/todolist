@@ -1,0 +1,38 @@
+<div class="dashboard">
+  <h2>ToDoList</h2>
+  <input
+    nz-input
+    [(ngModel)]="todoTitle"
+    placeholder="Add To Do"
+    class="todo-input"
+  />
+  <button
+    nz-button
+    nzType="primary"
+    style="margin-left: 15px;"
+    (click)="addTodo()"
+  >
+    Add
+  </button>
+
+  <h2>Working {{ doingArray.length }}</h2>
+  <div *ngFor="let item of doingArray; let i = index" style="margin-top: 15px;">
+    <app-item
+
+    ></app-item>
+  </div>
+
+  <h2>Finished {{ doneArray.length }}</h2>
+  <div *ngFor="let item of doneArray; let i = index" style="margin-top: 15px;">
+    <app-item
+    ></app-item>
+  </div>
+</div>
+
+<!-- [index]="i"
+[title]="item.title"
+[date]="item.date"
+[done]="item.done"
+(checkItemEvent)="checkItem($event)"
+(editItemEvent)="editItem($event)"
+(deleteItemEvent)="deleteItem($event)" -->
