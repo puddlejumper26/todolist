@@ -43,6 +43,7 @@ export class EditModalComponent implements OnInit {
   ngOnInit() { }
 
   ngOnChanges() {
+    // here when there are already data passed from item component
     if (this.title) {
       this.isEdit = true;
       this.validateForm.setValue({
@@ -94,7 +95,10 @@ export class EditModalComponent implements OnInit {
 
     // console.log(666, params);
     // emit the params object to dashboard, including date, title information
+    // here clickEvent is combind with dashboard addTodoEvent($event)
     this.clickEvent.emit(params);
+
+    // to close this dialog
     this.isVisibleChange.emit(false);
   }
 

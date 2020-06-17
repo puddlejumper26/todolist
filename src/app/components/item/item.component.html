@@ -16,7 +16,7 @@
     <label nz-checkbox [(ngModel)]="done" (ngModelChange)="checkItem()"></label>
 </ng-template>
 
-<!-- Edit button clicked then emit a request to dashboard component, then combine with edit-modal component -->
+<!-- Edit button clicked then emit a request to dashboard component, [title]="item.title", then combine with edit-modal component -->
 <ng-template #actionEdit>
     <button (click)="editItem()" nz-button nzType="primary">Edit</button>
 </ng-template>

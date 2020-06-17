@@ -14,9 +14,9 @@ export class DashboardComponent implements OnInit {
   doingArray: Array<Object> = [];
   doneArray: Array<Object> = [];
 
-  modalIsVisible: boolean = false;
   // double-binding edit-modal through isVisible; here to control the display of the add to do dialog
   // combine with the [nzVisible] in the nz-modal of edit-modal
+  modalIsVisible: boolean = false;
 
   editTitle: string = '';
   editDate: string = '';
@@ -59,6 +59,7 @@ export class DashboardComponent implements OnInit {
   }
 
   // This is to combine with the submit function in edit-modal
+  // here is to obtain the updated data passed from edit-modal
   addTodoEvent(data: Object) {
     const item = {
       title: data['title'],
@@ -104,6 +105,8 @@ export class DashboardComponent implements OnInit {
   }
 
   // here need to combine with edit-modal component,passing the data
+  // cause when edit button is clicked, data from the item component needs to be passed to edit-modal component
+  // then when edit-modal component (dialog) is displayed, these data could be shown inside the input slots.
   editItem(data: Object) {
     this.editTitle = data['title'];
     this.editDate = data['date'];
