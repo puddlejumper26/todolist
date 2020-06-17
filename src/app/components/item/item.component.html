@@ -2,6 +2,7 @@
   style="width: 400px; display: inline-block;"
   [nzActions]="[actionDone, actionEdit, actionDelete]"
 >
+ <!-- here title is combined with title in item.component, date is also -->
     <nz-card-meta [nzTitle]="title" [nzDescription]="date">
     </nz-card-meta>
 </nz-card>
@@ -9,14 +10,18 @@
 <!-- ng-template # actionDone, is to work with the [nzActions]="[actionDone, actionEdit, actionDelete]" above
     the purpose is to imply this label into the card
  -->
+
+ <!-- Check button clicked then emit a request to dashboard component, and finished -->
 <ng-template #actionDone>
     <label nz-checkbox [(ngModel)]="done" (ngModelChange)="checkItem()"></label>
 </ng-template>
 
+<!-- Edit button clicked then emit a request to dashboard component, then combine with edit-modal component -->
 <ng-template #actionEdit>
     <button (click)="editItem()" nz-button nzType="primary">Edit</button>
 </ng-template>
 
+<!-- Delete button clicked then emit a request to dashboard component, and finished -->
 <ng-template #actionDelete>
     <button (click)="deleteItem()" nz-button nzType="danger">Delete</button>
 </ng-template>

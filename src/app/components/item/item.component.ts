@@ -13,6 +13,8 @@ export class ItemComponent implements OnInit {
   title: string;
   @Input()
   done: boolean;
+
+  // here date is binded with [date]='item.date' in dashboard. html
   @Input()
   date: boolean;
   @Output()

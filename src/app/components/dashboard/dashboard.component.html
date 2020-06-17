@@ -31,6 +31,7 @@
   <h2>Finished {{ doneArray.length }}</h2>
   <div *ngFor="let item of doneArray; let i = index" style="margin-top: 15px;">
     <!--[title]="item['title']" and  [title]="item.title" are both working, but first is better -->
+    <!-- here editItem($event) is binded with edit-modal component,  -->
     <app-item
       [index]="i"
       [title]="item.title"
@@ -43,6 +44,8 @@
   </div>
 </div>
 
+<!-- this is the dialog would be displayed when edit button inside item component is clicked -->
+<!-- through modalIsVisible to control whether the dialog is displayed -->
 <app-edit-modal
   [title]="editTitle"
   [date]="editDate"

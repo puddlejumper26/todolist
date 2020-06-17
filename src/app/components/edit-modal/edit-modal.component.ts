@@ -63,7 +63,7 @@ export class EditModalComponent implements OnInit {
   }
 
   handleCancel(): void {
-    // to close the dialog or window
+    // to close the dialogs
     this.isVisibleChange.emit(false);
   }
 
@@ -77,10 +77,7 @@ export class EditModalComponent implements OnInit {
         return;
       }
       if (this.validateForm.controls[i] && this.validateForm.controls[i].value) {
-        console.log(3333,this.validateForm.controls[i]);
-        console.log(4444,this.validateForm.controls[i].value);
         params[i] = this.validateForm.controls[i].value;
-        console.log(555, params[i]);
       } else {
         params[i] = '';
       }
@@ -95,12 +92,13 @@ export class EditModalComponent implements OnInit {
       params['index'] = this.index;
     }
 
-    console.log(666, params);
-
+    // console.log(666, params);
+    // emit the params object to dashboard, including date, title information
     this.clickEvent.emit(params);
     this.isVisibleChange.emit(false);
   }
 
+  // to transform date form from Mon Jun 29 2020 12:06:20 GMT+0800 to 2020-06-29
   setDate(dates) {
     const time = new Date(this.validateForm.get(dates).value);
     const datetime = time.getFullYear() + '-' + this.formatDayAndMonth(time.getMonth() + 1) + '-' + this.formatDayAndMonth(time.getDate());

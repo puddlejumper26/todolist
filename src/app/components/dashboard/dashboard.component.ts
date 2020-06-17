@@ -103,6 +103,7 @@ export class DashboardComponent implements OnInit {
     localStorage.setItem('sha', JSON.stringify(this.dataArray));
   }
 
+  // here need to combine with edit-modal component,passing the data
   editItem(data: Object) {
     this.editTitle = data['title'];
     this.editDate = data['date'];

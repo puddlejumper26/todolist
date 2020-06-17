@@ -24,9 +24,7 @@
           theme="outline"
         />
         <span
-          *ngIf="
-            validateForm.get('title').dirty && validateForm.get('title').errors
-          "
+          *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors"
           >Please input Title!
         </span>
       </nz-form-control>
@@ -47,9 +45,7 @@
           theme="outline"
         ></nz-date-picker>
         <span
-          *ngIf="
-            validateForm.get('date').dirty && validateForm.get('date').errors
-          "
+          *ngIf="validateForm.get('date').dirty && validateForm.get('date').errors"
           >Please choose a date！
         </span>
       </nz-form-control>
