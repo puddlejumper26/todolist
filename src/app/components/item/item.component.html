@@ -6,6 +6,9 @@
     </nz-card-meta>
 </nz-card>
 
+<!-- ng-template # actionDone, is to work with the [nzActions]="[actionDone, actionEdit, actionDelete]" above
+    the purpose is to imply this label into the card
+ -->
 <ng-template #actionDone>
     <label nz-checkbox [(ngModel)]="done" (ngModelChange)="checkItem()"></label>
 </ng-template>

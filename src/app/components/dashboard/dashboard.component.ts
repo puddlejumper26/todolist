@@ -15,6 +15,9 @@ export class DashboardComponent implements OnInit {
   doneArray: Array<Object> = [];
 
   modalIsVisible: boolean = false;
+  // double-binding edit-modal through isVisible; here to control the display of the add to do dialog
+  // combine with the [nzVisible] in the nz-modal of edit-modal
+
   editTitle: string = '';
   editDate: string = '';
   editDone: boolean = false;
@@ -26,14 +29,18 @@ export class DashboardComponent implements OnInit {
     this.getTodoList();
   }
 
+  // initiate
   getTodoList(): void {
-    const dataString: string = localStorage.getItem('todo-list');
+    const dataString: string = localStorage.getItem('sha');
+    // here I just name it 'sha', could be named as anything, just need to be identical with following three localStorage.setItem
+    // when the name is identical, then any operation is done, and refresh the browser, status is the same,
+    // otherwise, after refresh, status is cleared to null, start from zero.
     if (dataString != null) {
       this.dataArray = JSON.parse(dataString);
       for (let i = 0; i < this.dataArray.length; i++) {
         const element: any = this.dataArray[i];
         if (element.done === true) {
-          this.doneArray.push(element);
+          this.doneArray.push(element); // add to doneArray(finished)
         } else {
           this.doingArray.push(element);
         }
@@ -41,6 +48,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  // this is the default setting when new dialog is opend after clicking Add button
+  // and binding with edit-modal through here
   addTodo(): void {
     this.editTitle = '';
     this.editDate = '';
@@ -49,6 +58,7 @@ export class DashboardComponent implements OnInit {
     this.modalIsVisible = true;
   }
 
+  // This is to combine with the submit function in edit-modal
   addTodoEvent(data: Object) {
     const item = {
       title: data['title'],
@@ -66,12 +76,15 @@ export class DashboardComponent implements OnInit {
       }
     }
     this.dataArray = this.doingArray.concat(this.doneArray);
-    localStorage.setItem('todo-list', JSON.stringify(this.dataArray));
+    localStorage.setItem('sha', JSON.stringify(this.dataArray));
   }
 
+  // this function is to mark item, and put them into doneArray or doingArray, so it needs to set a newItem Object, and push into the array
   checkItem(data: Object) {
+    // index and done are to make the cut and paste in doingArray (Working) and doneArray(finished)
     const index: number = data['index'];
     const done: boolean = data['done'];
+    // newItem is the object to be cut or pasted
     const newItem = {
       title: data['title'],
       date: data['date'],
@@ -84,8 +97,10 @@ export class DashboardComponent implements OnInit {
       this.doneArray.splice(index, 1);
       this.doingArray.push(newItem);
     }
+    // then re-concat the doingArray and doneArray
     this.dataArray = this.doingArray.concat(this.doneArray);
-    localStorage.setItem('todo-list', JSON.stringify(this.dataArray));
+    // put into the localStorage
+    localStorage.setItem('sha', JSON.stringify(this.dataArray));
   }
 
   editItem(data: Object) {
@@ -93,10 +108,12 @@ export class DashboardComponent implements OnInit {
     this.editDate = data['date'];
     this.editDone = data['done'];
     this.editIndex = data['index'];
-    this.modalIsVisible = true;
+    this.modalIsVisible = true; // open the dialog for editing, if here is false, then dialog could not be opened
   }
 
+  // similar to checkItem funciton, but without creating newItem Object
   deleteItem(data: Object) {
+    // take the index number sent from the item component, then take 1 digit, and delete this number.
     const index: number = data['index'];
     const done: boolean = data['done'];
     if (done) {
@@ -105,6 +122,6 @@ export class DashboardComponent implements OnInit {
       this.doingArray.splice(index, 1);
     }
     this.dataArray = this.doingArray.concat(this.doneArray);
-    localStorage.setItem('todo-list', JSON.stringify(this.dataArray));
+    localStorage.setItem('sha', JSON.stringify(this.dataArray));
   }
 }

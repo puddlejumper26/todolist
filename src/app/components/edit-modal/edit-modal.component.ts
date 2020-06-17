@@ -16,10 +16,17 @@ export class EditModalComponent implements OnInit {
   done: string = '';
   @Input()
   index: number = 0;
+
+  //no need to set value here, cause in the dashboard component, it is already set
+  // combine with nzOnCancel, check the website for more explaination
+  // to close the dialog when clicking X or cancel button with setting of false,
+  // with setting of true, then clicking is not working
   @Input()
-  isVisible = false;
+  isVisible: boolean;
+
   @Output()
-  isVisibleChange = new EventEmitter();
+  isVisibleChange = new EventEmitter<boolean>();
+
   @Output()
   clickEvent = new EventEmitter<Object>();
 
@@ -56,6 +63,7 @@ export class EditModalComponent implements OnInit {
   }
 
   handleCancel(): void {
+    // to close the dialog or window
     this.isVisibleChange.emit(false);
   }
 

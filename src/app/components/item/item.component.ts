@@ -22,6 +22,7 @@ export class ItemComponent implements OnInit {
   @Output()
   deleteItemEvent = new EventEmitter<Object>();
 
+  private data: Object
   //dialog
   confirmModal: NzModalRef;
 
@@ -52,7 +53,7 @@ export class ItemComponent implements OnInit {
 
   deleteItem(){
     this.confirmModal = this.modal.confirm({
-      nzTitle: 'Info',
+      nzTitle: 'DELETE',
       nzContent: 'Confirm to delete',
       nzOkText: 'Confirm',
       nzCancelText: 'Cancel',

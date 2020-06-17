@@ -1,11 +1,11 @@
 <div class="dashboard">
   <h2>ToDoList</h2>
-  <input
+  <!-- <input
     nz-input
     [(ngModel)]="todoTitle"
     placeholder="Add To Do"
     class="todo-input"
-  />
+  /> -->
   <button
     nz-button
     nzType="primary"
@@ -30,6 +30,7 @@
 
   <h2>Finished {{ doneArray.length }}</h2>
   <div *ngFor="let item of doneArray; let i = index" style="margin-top: 15px;">
+    <!--[title]="item['title']" and  [title]="item.title" are both working, but first is better -->
     <app-item
       [index]="i"
       [title]="item.title"
