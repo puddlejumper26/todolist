@@ -69,6 +69,7 @@ export class EditModalComponent implements OnInit {
 
   submitForm(): void {
     let params = {};
+
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
@@ -76,18 +77,26 @@ export class EditModalComponent implements OnInit {
         return;
       }
       if (this.validateForm.controls[i] && this.validateForm.controls[i].value) {
+        console.log(3333,this.validateForm.controls[i]);
+        console.log(4444,this.validateForm.controls[i].value);
         params[i] = this.validateForm.controls[i].value;
+        console.log(555, params[i]);
       } else {
         params[i] = '';
       }
     }
+
     this.setDate('date');
     params['date'] = this.validateForm.get('date').value;
     params['isEdit'] = this.isEdit;
+
     if (this.isEdit) {
       params['done'] = this.done;
       params['index'] = this.index;
     }
+
+    console.log(666, params);
+
     this.clickEvent.emit(params);
     this.isVisibleChange.emit(false);
   }
@@ -95,6 +104,7 @@ export class EditModalComponent implements OnInit {
   setDate(dates) {
     const time = new Date(this.validateForm.get(dates).value);
     const datetime = time.getFullYear() + '-' + this.formatDayAndMonth(time.getMonth() + 1) + '-' + this.formatDayAndMonth(time.getDate());
+    // set the datetime based on the result grasping from dates parameter
     this.validateForm.get(dates).setValue(datetime);
   }
 
