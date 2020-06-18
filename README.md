@@ -7,7 +7,7 @@
 
 # Feature
 
-This is using localStorage.setItem  and  localStorage.getItem to simulate the server
+This is using `localStorage.setItem`  and  `localStorage.getItem` to simulate the server
 
 # Concept
 
