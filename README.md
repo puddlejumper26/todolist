@@ -7,9 +7,9 @@
 
 # Feature
 
-This is using `localStorage.setItem`  and  `localStorage.getItem` to simulate the server
+This showcase is using `localStorage.setItem`  and  `localStorage.getItem` to simulate the server.
 
-The same showcase operates with JSON-Server, please click [here](https://github.com/puddlejumper26/todolist-json/blob/master/README.md#-todolist-json)
+The same showcase operates with `JSON-Server`, please click [here](https://github.com/puddlejumper26/todolist-json/blob/master/README.md#-todolist-json)
 
 # Concept
 
