@@ -5,6 +5,10 @@
 - Angular
 - json-server
 
+# Feature
+
+This is using localStorage.setItem  and  localStorage.getItem to simulate the server
+
 # Concept
 
 - **`MVP (Minimum Viable Product)`**
