@@ -72,11 +72,20 @@ export class EditModalComponent implements OnInit {
     let params = {};
 
     for (const i in this.validateForm.controls) {
+      console.log(111, this.validateForm.controls);
+      console.log(222, this.validateForm.controls[i]);
       this.validateForm.controls[i].markAsDirty();
       this.validateForm.controls[i].updateValueAndValidity();
-      if (!(this.validateForm.controls[i].status == 'VALID') && this.validateForm.controls[i].status !== 'DISABLED') {
+
+      // it means this.validateForm.controls[i].status has to be equal to DISABLED
+      // if (!(this.validateForm.controls[i].status == 'VALID') && this.validateForm.controls[i].status !== 'DISABLED') {
+      //   return;
+      // }
+
+      if (this.validateForm.controls[i].status === 'DISABLED') {
         return;
       }
+
       if (this.validateForm.controls[i] && this.validateForm.controls[i].value) {
         params[i] = this.validateForm.controls[i].value;
       } else {
@@ -84,7 +93,9 @@ export class EditModalComponent implements OnInit {
       }
     }
 
+    //transform the date form
     this.setDate('date');
+
     params['date'] = this.validateForm.get('date').value;
     params['isEdit'] = this.isEdit;
 
@@ -110,6 +121,7 @@ export class EditModalComponent implements OnInit {
     this.validateForm.get(dates).setValue(datetime);
   }
 
+  // this is to control the number display, e.g. when there is 2019.6.3  -> 2019.06.03
   formatDayAndMonth(val) {
     if (val < 10) {
       val = '0' + val;
