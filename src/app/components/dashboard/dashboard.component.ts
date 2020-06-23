@@ -18,8 +18,6 @@ export class DashboardComponent implements OnInit {
   // combine with the [nzVisible] in the nz-modal of edit-modal
   modalIsVisible: boolean = false;
 
-
-
   editTitle: string = '';
   editDate: string = '';
   editDone: boolean = false;
@@ -55,16 +53,16 @@ export class DashboardComponent implements OnInit {
   // and binding with edit-modal through here
   addTodo(): void {
     // before clicking Add button ,there is already content inside input, then copy this content to the new opened dialog as title
-    if(this.todoTitle !==''){
+    if (this.todoTitle !== '') {
       this.editTitle = this.todoTitle;
-    }else{
-      this.editTitle='';
+      this.editDate = '';
+      this.editDone = false;
+      this.editIndex = 0;
+      this.modalIsVisible = true;
+    } else {
+      // if the todoTitle is empty, then info the user to input the content first
+      this.message.info('Please input title first!');
     }
-
-    this.editDate = '';
-    this.editDone = false;
-    this.editIndex = 0;
-    this.modalIsVisible = true;
   }
 
   // This is to combine with the submit function in edit-modal
