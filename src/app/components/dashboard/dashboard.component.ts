@@ -18,11 +18,14 @@ export class DashboardComponent implements OnInit {
   // combine with the [nzVisible] in the nz-modal of edit-modal
   modalIsVisible: boolean = false;
 
+
+
   editTitle: string = '';
   editDate: string = '';
   editDone: boolean = false;
   editIndex: number = 0;
 
+  // this message is to pop in the middle
   constructor(private message: NzMessageService) {}
 
   ngOnInit() {
@@ -51,7 +54,13 @@ export class DashboardComponent implements OnInit {
   // this is the default setting when new dialog is opend after clicking Add button
   // and binding with edit-modal through here
   addTodo(): void {
-    this.editTitle = '';
+    // before clicking Add button ,there is already content inside input, then copy this content to the new opened dialog as title
+    if(this.todoTitle !==''){
+      this.editTitle = this.todoTitle;
+    }else{
+      this.editTitle='';
+    }
+
     this.editDate = '';
     this.editDone = false;
     this.editIndex = 0;
