@@ -60,6 +60,7 @@ export class DashboardComponent implements OnInit {
 
   // This is to combine with the submit function in edit-modal
   // here is to obtain the updated data passed from edit-modal
+  // here the data is the params object (submitForm function) sent from edit-modal
   addTodoEvent(data: Object) {
     const item = {
       title: data['title'],

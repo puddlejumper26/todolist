@@ -97,6 +97,8 @@ export class EditModalComponent implements OnInit {
     this.setDate('date');
 
     params['date'] = this.validateForm.get('date').value;
+
+    // tacking to the ngOnChanges()
     params['isEdit'] = this.isEdit;
 
     if (this.isEdit) {
