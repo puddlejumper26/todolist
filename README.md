@@ -2,7 +2,7 @@
 
 # Demo
 
-Please click [here](https://puddlejumper26.github.io/todolist/) https://puddlejumper26.github.io/todolist/
+Please click  https://puddlejumper26.github.io/todolist/
 
 # Frame + Tool
 
